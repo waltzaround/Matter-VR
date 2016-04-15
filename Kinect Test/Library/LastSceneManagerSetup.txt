@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/Users/walt/Documents/CTEC708-VR-MIDI-Controller/UnityOSCTest/UnityOSC-master/tests/touchosc_integration/Assets/TestScene.unity
+  isLoaded: 1
+  isActive: 1

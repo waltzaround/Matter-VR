@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400006}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400010}
+  - 114: {fileID: 11400014}
+  m_Layer: 0
+  m_Name: VisualizerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1002 &100001
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .200000003, y: .300000012, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!1002 &400001
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1687521379, guid: 8957f3fff5b21f84fa0307974145393c, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  dataGroupName: High
+  dataSource: 1
+  numberSubDataGroups: 16
+  frequencyRangeStartIndex: 135
+  frequencyRangeEndIndex: 800
+  boost: 20
+  cutoff: 1
+  debugColor: {r: 0, g: .79020977, b: 1, a: 1}
+--- !u!1002 &11400001
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1687521379, guid: 8957f3fff5b21f84fa0307974145393c, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  dataGroupName: Mid
+  dataSource: 1
+  numberSubDataGroups: 16
+  frequencyRangeStartIndex: 15
+  frequencyRangeEndIndex: 125
+  boost: 10
+  cutoff: 1
+  debugColor: {r: 0, g: 1, b: .244755268, a: 1}
+--- !u!1002 &11400003
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1687521379, guid: 8957f3fff5b21f84fa0307974145393c, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  dataGroupName: Bass
+  dataSource: 1
+  numberSubDataGroups: 5
+  frequencyRangeStartIndex: 0
+  frequencyRangeEndIndex: 10
+  boost: 2
+  cutoff: 1
+  debugColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!1002 &11400005
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1149576180, guid: 8957f3fff5b21f84fa0307974145393c, type: 1}
+  m_Name: 
+  channel: 0
+  windowSize: 1024
+  windowType: 2
+  audioSource: {fileID: 0}
+  displaySpectrumDebug: 0
+  displayDataGroupDebug: 0
+  displayControllerDebug: 0
+  debugSpectrumBarWidth: 1
+  debugSpectrumBarHeight: 80
+  debugRawAudioBarHeight: 40
+  debugDataGroupBarWidth: 4
+  debugDataGroupBarHeight: 40
+  debugControllerBarWidth: 150
+  debugControllerBarHeight: 6
+  debugSeparation: 5
+  debugTexture: {fileID: 2800000, guid: e34dff170295acb4d828f0a44c70659c, type: 1}
+--- !u!1002 &11400007
+EditorExtensionImpl:
+  serializedVersion: 6
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420914e93707e014ab7e9ce5fb41c4d3, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  controllerName: Bass
+  limitIncreaseRate: 1
+  increaseRate: 20
+  limitDecreaseRate: 1
+  decreaseRate: .5
+  dataGroup: {fileID: 11400004}
+  m_szLastDataGroupName: Bass
+  subValueType: 1
+  finalValueType: 1
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420914e93707e014ab7e9ce5fb41c4d3, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  controllerName: Mid
+  limitIncreaseRate: 1
+  increaseRate: 20
+  limitDecreaseRate: 1
+  decreaseRate: .5
+  dataGroup: {fileID: 11400002}
+  m_szLastDataGroupName: Mid
+  subValueType: 1
+  finalValueType: 1
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420914e93707e014ab7e9ce5fb41c4d3, type: 1}
+  m_Name: 
+  m_oVisManager: {fileID: 11400006}
+  m_szLastVisManagerName: VisualizerManager
+  controllerName: High
+  limitIncreaseRate: 1
+  increaseRate: 20
+  limitDecreaseRate: 1
+  decreaseRate: .5
+  dataGroup: {fileID: 11400000}
+  m_szLastDataGroupName: High
+  subValueType: 1
+  finalValueType: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
+--- !u!1002 &100100001
+EditorExtensionImpl:
+  serializedVersion: 6

@@ -1,0 +1,1538 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VisualizerStudio</name>
+    </assembly>
+    <members>
+        <member name="T:IVisTriggerTarget">
+            <summary>
+            This interface should be used by any component that wants to be a target of 
+            a trigger.  When set as a target of a trigger, OnTriggered will be 
+            called every time the trigger is triggered. 
+            </summary>
+        </member>
+        <member name="M:IVisTriggerTarget.OnTriggered(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This function is called by the base trigger whenever 
+            this trigger has been TRIGGERED.
+            </summary>
+            <param name="current">
+            The current value of the targeted controller.
+            </param>
+            <param name="previous">
+            The previous value of the targeted controller.
+            </param>
+            <param name="difference">
+            The value difference of the targeted controller.
+            </param>
+            <param name="adjustedDifference">
+            The adjusted value difference of the targeted controller.
+            This value is the difference value as if it took place over a 
+            certain time period, controlled by VisBaseController.mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </param>
+        </member>
+        <member name="T:VisDataContainer">
+            <summary>
+            This class defines a data container for visualization data. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.average">
+            <summary>
+            This indicates the average value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.previousAverage">
+            <summary>
+            This indicates the previous average value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.averageDifference">
+            <summary>
+            This indicates the difference of the average value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.median">
+            <summary>
+            This indicates the median value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.previousMedian">
+            <summary>
+            This indicates the previous median value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.medianDifference">
+            <summary>
+            This indicates the difference of the median value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.sum">
+            <summary>
+            This indicates the sum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.previousSum">
+            <summary>
+            This indicates the previous sum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.sumDifference">
+            <summary>
+            This indicates the difference of the sum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.minimum">
+            <summary>
+            This indicates the minimum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.previousMinimum">
+            <summary>
+            This indicates the previous minimum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.minimumDifference">
+            <summary>
+            This indicates the difference of the minimum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.maximum">
+            <summary>
+            This indicates the maximum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.previousMaximum">
+            <summary>
+            This indicates the previous maximum value. 
+            </summary>
+        </member>
+        <member name="F:VisDataContainer.maximumDifference">
+            <summary>
+            This indicates the difference of the maximum value. 
+            </summary>
+        </member>
+        <member name="M:VisDataContainer.GetValue(VisDataValueType)">
+            <summary>
+            This gets the value based on type. 
+            </summary>
+            <param name="valueType">
+            This type of value to get.
+            </param>
+            <returns>
+            The value that was requested.
+            </returns>
+        </member>
+        <member name="M:VisDataContainer.GetPreviousValue(VisDataValueType)">
+            <summary>
+            This gets the previous value based on type. 
+            </summary>
+            <param name="valueType">
+            This type of previous value to get.
+            </param>
+            <returns>
+            The previous value that was requested.
+            </returns>
+        </member>
+        <member name="M:VisDataContainer.GetValueDifference(VisDataValueType)">
+            <summary>
+            This gets the value difference based on type. 
+            </summary>
+            <param name="valueType">
+            This type of value difference to get.
+            </param>
+            <returns>
+            The value difference that was requested.
+            </returns>
+        </member>
+        <member name="M:VisDataContainer.UpdatePreviousValues">
+            <summary>
+            This updates the previous value of this data container by setting the current value to the previous. 
+            </summary>
+        </member>
+        <member name="M:VisDataContainer.ResetCurrentValues">
+            <summary>
+            This resets all current values back to their default values. 
+            </summary>
+        </member>
+        <member name="M:VisDataContainer.ApplyBoostAndCutoff(System.Single,System.Single)">
+            <summary>
+            This applies a boost and cutoff to all current values. 
+            </summary>
+            <param name="boost">
+            The boost to apply.
+            </param>
+            <param name="cutoff">
+            The cutoff to apply.
+            </param>
+        </member>
+        <member name="M:VisDataContainer.UpdateValueDifferences">
+            <summary>
+            This updates all value differences by subtracting the current by the previous of each value type. 
+            </summary>
+        </member>
+        <member name="T:ControllerSourceValue">
+            <summary>
+            This enumeration describes what value from the target controller 
+            should be used as the source value to modify a property. 
+            </summary>
+        </member>
+        <member name="F:ControllerSourceValue.Current">
+            <summary>
+            This indicates the current value of the target controller. 
+            </summary>
+        </member>
+        <member name="F:ControllerSourceValue.Previous">
+            <summary>
+            This indicates the previous value of the target controller. 
+            </summary>
+        </member>
+        <member name="F:ControllerSourceValue.Difference">
+            <summary>
+            This indicates the difference value of the target controller. 
+            </summary>
+        </member>
+        <member name="T:VisHelper">
+            <summary>
+            This static class is used to provide helper functions for Visualizer Studio. 
+            </summary>
+        </member>
+        <member name="M:VisHelper.Validate(System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Object,System.String,System.Boolean)">
+            <summary>
+            This functon attempts to validiate a value. 
+            </summary>
+            <param name="currentValue">
+            The current value to validate.
+            </param>
+            <param name="minValue">
+            The min valid value.
+            </param>
+            <param name="maxValue">
+            The max valid value.
+            </param>
+            <param name="defaultValue">
+            The default value to use if the current value is invalid.
+            </param>
+            <param name="obj">
+            The object whose data is being validated.
+            </param>
+            <param name="fieldName">
+            The name of the field being validated.
+            </param>
+            <param name="error">
+            Whether or not this is an error or warning if invalid.
+            </param>
+            <returns>
+            The new, validated value.
+            </returns>
+        </member>
+        <member name="M:VisHelper.Validate(System.Single,System.Single,System.Single,System.Single,UnityEngine.Object,System.String,System.Boolean)">
+            <summary>
+            This functon attempts to validiate a value. 
+            </summary>
+            <param name="currentValue">
+            The current value to validate.
+            </param>
+            <param name="minValue">
+            The min valid value.
+            </param>
+            <param name="maxValue">
+            The max valid value.
+            </param>
+            <param name="defaultValue">
+            The default value to use if the current value is invalid.
+            </param>
+            <param name="obj">
+            The object whose data is being validated.
+            </param>
+            <param name="fieldName">
+            The name of the field being validated.
+            </param>
+            <param name="error">
+            Whether or not this is an error or warning if invalid.
+            </param>
+            <returns>
+            The new, validated value.
+            </returns>
+        </member>
+        <member name="M:VisHelper.ConvertBetweenRanges(System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>
+            This function converts between a source range and a destination range based on the current source value.
+            So given the following source and dest values...
+            sourceValue=1.25, sourceMin=1.0, sourceMax=2.0, destMin=4.0, destMax=8.0
+            then...
+            convertedValue=5.0
+            </summary>
+            <param name="sourceValue">This is the current source value to convert from.</param>
+            <param name="sourceMin">This is the minimum value for the source range to convert from.</param>
+            <param name="sourceMax">This is the maximum value for the source range to convert from.</param>
+            <param name="destMin">This is the minimum value for the dest range to convert to.</param>
+            <param name="destMax">This is the maximum value for the dest range to convert to.</param>
+            <param name="invertDestValue">Indicates whether or not to invert to dest range result.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="T:IVisModifierTarget">
+            <summary>
+            This interface should be used by any component that wants to be a target of 
+            a modifier.  When set as a target of a modifier, OnValueUpdated will be 
+            called every time the value is updated. 
+            </summary>
+        </member>
+        <member name="M:IVisModifierTarget.OnValueUpdated(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This function is called by the base modifier whenever 
+            the value of the targeted controller is updated.
+            </summary>
+            <param name="current">
+            The current value of the targeted controller.
+            </param>
+            <param name="previous">
+            The previous value of the targeted controller.
+            </param>
+            <param name="difference">
+            The value difference of the targeted controller.
+            </param>
+            <param name="adjustedDifference">
+            The adjusted value difference of the targeted controller.
+            This value is the difference value as if it took place over a 
+            certain time period, controlled by VisBaseController.mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </param>
+        </member>
+        <member name="T:VisManager">
+            <summary>
+            This class is the master object that controls all of the base visualization functionality. 
+            </summary>
+        </member>
+        <member name="F:VisManager.channel">
+            <summary>
+            This is the audio channel to run the FFT on. 
+            </summary>
+        </member>
+        <member name="F:VisManager.windowSize">
+            <summary>
+            This is the windows size to use when running the FFT. 
+            </summary>
+        </member>
+        <member name="F:VisManager.windowType">
+            <summary>
+            This is the type of FFT window to run on the audio. 
+            </summary>
+        </member>
+        <member name="F:VisManager.audioSource">
+            <summary>
+            This is the current audio source that is being used as the input audio signal. 
+            </summary>
+        </member>
+        <member name="F:VisManager.displaySpectrumDebug">
+            <summary>
+            This indicates if the debugging information for the spectrum should be displayed. 
+            </summary>
+        </member>
+        <member name="F:VisManager.displayDataGroupDebug">
+            <summary>
+            This indicates if the debugging information for the data groups should be displayed. 
+            </summary>
+        </member>
+        <member name="F:VisManager.displayControllerDebug">
+            <summary>
+            This indicates if the debugging information for the controllers should be displayed. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugSpectrumBarWidth">
+            <summary>
+            This is the pixel width to draw the spectrum bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugSpectrumBarHeight">
+            <summary>
+            This is the maximum pixel height to draw the spectrum bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugRawAudioBarHeight">
+            <summary>
+            This is the maximum pixel height to draw the raw audio bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugDataGroupBarWidth">
+            <summary>
+            This is the pixel width to draw the data group bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugDataGroupBarHeight">
+            <summary>
+            This is the maximum pixel height to draw the data group bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugControllerBarWidth">
+            <summary>
+            This is the maximum bar width to draw the controller bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugControllerBarHeight">
+            <summary>
+            This is the pixel height to draw the controller bars at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugSeparation">
+            <summary>
+            This is the pixels of separation to draw the debug windows at. 
+            </summary>
+        </member>
+        <member name="F:VisManager.debugTexture">
+            <summary>
+            This is the debug texture to use when drawing the debug frames.  This should just be a plain white texture. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_afSpectrumData">
+            <summary>
+            This is the array that holds all of the spectrum data for the current audio input.  (This is the FFT results) 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_afRawAudioData">
+            <summary>
+            This is the array that holds all of the raw audio data for the current audio input.  (This is raw wave form) 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_afAuxiliaryData">
+            <summary>
+            This is the array that holds the auxiliary audio data, used as temporary storage for merging left and right audio stream data.
+            </summary>
+        </member>
+        <member name="F:VisManager.m_oDataGroups">
+            <summary>
+            This is the list of data groups that are registered and active with this VisManager. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_oControllers">
+            <summary>
+            This is the list of controllers that are registered and active with this VisManager. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_fMaxDebugValue">
+            <summary>
+            This is the max displayed debug value. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_nFrequencyRange">
+            <summary>
+            This is the range of the song frequency in Hz. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_fFrequencyResolution">
+            <summary>
+            This is the size of each sample in Hz. 
+            </summary>
+        </member>
+        <member name="F:VisManager.m_bUseAudioListener">
+            <summary>
+            This indicates whether or not this VisManager should use the static AudioListener. 
+            </summary>
+        </member>
+        <member name="M:VisManager.Reset">
+            <summary>
+            This is called when the vis manager is reset.
+            </summary>
+        </member>
+        <member name="M:VisManager.Start">
+            <summary>
+            This function sets up this VisManager. 
+            </summary>
+        </member>
+        <member name="M:VisManager.SetAudioSource(UnityEngine.AudioSource)">
+            <summary>
+            This function should be used to set the audio source at runtime.  This will call Start() to reset the
+            VisManager after calling.
+            </summary>
+            <param name="_audioSource">The audio source to use for this VisManager.</param>
+        </member>
+        <member name="M:VisManager.CalculateFrequencyResolution">
+            <summary>
+            This calculates the current frequency range and resolution for the playing audio clip. 
+            </summary>
+        </member>
+        <member name="M:VisManager.Update">
+            <summary>
+            This function updates this VisManager and runs the FFT on the target audio input,
+            as well, it grabs the raw audio data.
+            </summary>
+        </member>
+        <member name="M:VisManager.AddDataGroup(VisDataGroup)">
+            <summary>
+            This adds a data group to this VisManager. 
+            </summary>
+            <param name="dataGroup">
+            This is the data group to add.
+            </param>
+        </member>
+        <member name="M:VisManager.AddController(VisBaseController)">
+            <summary>
+            This adds a controller to this VisManager. 
+            </summary>
+            <param name="controller">
+            This is the controller to add.
+            </param>
+        </member>
+        <member name="M:VisManager.RemoveDataGroup(VisDataGroup)">
+            <summary>
+            This removes a data group to this VisManager. 
+            </summary>
+            <param name="dataGroup">
+            This is the data group to remove.
+            </param>
+        </member>
+        <member name="M:VisManager.RemoveController(VisBaseController)">
+            <summary>
+            This removes a controller to this VisManager. 
+            </summary>
+            <param name="controller">
+            This is the controller to remove.
+            </param>
+        </member>
+        <member name="M:VisManager.ClearDataGroups">
+            <summary>
+            This clears all data groups on this manager. 
+            </summary>
+        </member>
+        <member name="M:VisManager.ClearControllers">
+            <summary>
+            This clears all controllers on this manager. 
+            </summary>
+        </member>
+        <member name="M:VisManager.GetSpectrumData">
+            <summary>
+            This gets the array of the spectrum data. 
+            </summary>
+            <returns>
+            The array of the spectrum data.
+            </returns>
+        </member>
+        <member name="M:VisManager.GetRawAudioData">
+            <summary>
+            This gets the array of the raw audio data. 
+            </summary>
+            <returns>
+            This is the array of the raw audio data.
+            </returns>
+        </member>
+        <member name="M:VisManager.GetDataGroupByName(System.String)">
+            <summary>
+            This gets a data group from this VisManager by name.
+            </summary>
+            <param name="dataGroupName">
+            The name of the data group to find.
+            </param>
+            <returns>
+            The data group that was requested.  Returns null if not found.
+            </returns>
+        </member>
+        <member name="M:VisManager.GetControllerByName(System.String)">
+            <summary>
+            This gets a controller from this VisManager by name.
+            </summary>
+            <param name="controllerName">
+            The name of the controller to find.
+            </param>
+            <returns>
+            The controller that was requested.  Returns null if not found.
+            </returns>
+        </member>
+        <member name="M:VisManager.EnsureUniqueControllerName(System.String)">
+            <summary>
+            This ensures a controller name is unique.
+            </summary>
+            <param name="name">The current name to modify.</param>
+        </member>
+        <member name="M:VisManager.EnsureUniqueDataGroupName(System.String)">
+            <summary>
+            This ensures a data group name is unique.
+            </summary>
+            <param name="name">The current name to modify.</param>
+        </member>
+        <member name="M:VisManager.OnGUI">
+            <summary>
+            This function displays the debug GUI for this VisManager. 
+            </summary>
+        </member>
+        <member name="M:VisManager.GetDebugColor(System.Int32,VisDataSource)">
+            <summary>
+            This gets the debug gui color for a specific frequency index 
+            </summary>
+            <param name="freqIndex">
+            This is the frequency index used to lookup the debug color.
+            </param>
+            <param name="dataSource">
+            The data source.
+            </param>
+            <returns>
+            This returns the debug color to be used to display the requested frequency index.
+            </returns>
+        </member>
+        <member name="M:VisManager.ToString">
+            <summary>
+            To string function. 
+            </summary>
+            <returns>
+            This object as a string.
+            </returns>
+        </member>
+        <member name="M:VisManager.RestoreVisManagerTarget(IVisManagerTarget)">
+            <summary>
+            This attempts to restore the last set manager on the target.
+            </summary>
+            <param name="target">The target to restore.</param>
+            <returns>Whether or not the target was restored.</returns>
+        </member>
+        <member name="P:VisManager.DataGroups">
+            <summary>
+            This gets the read only list of all data groups in this VisManager. 
+            </summary>
+        </member>
+        <member name="P:VisManager.Controllers">
+            <summary>
+            This gets the read only list of all controllers in this VisManager. 
+            </summary>
+        </member>
+        <member name="P:VisManager.FrequencyResolution">
+            <summary>
+            This gets the size of each sample in Hz. 
+            </summary>
+        </member>
+        <member name="T:VisManager.Defaults">
+            <summary>
+            This internal class holds all of the defaults of the VisManager class. 
+            </summary>
+        </member>
+        <member name="T:VisManager.WindowSize">
+            <summary>
+            This enumeration describes the target window size to use for running the FFT. 
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._64">
+            <summary>
+            Indicates a window size of 64.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._128">
+            <summary>
+            Indicates a window size of 128.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._256">
+            <summary>
+            Indicates a window size of 256.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._512">
+            <summary>
+            Indicates a window size of 512.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._1024">
+            <summary>
+            Indicates a window size of 1024.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._2048">
+            <summary>
+            Indicates a window size of 2048.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._4096">
+            <summary>
+            Indicates a window size of 4096.
+            </summary>
+        </member>
+        <member name="F:VisManager.WindowSize._8192">
+            <summary>
+            Indicates a window size of 8192.
+            </summary> 
+        </member>
+        <member name="T:VisManager.Channel">
+            <summary>
+            This enumeration describes the target channel to run the FFT on.
+            </summary>
+        </member>
+        <member name="F:VisManager.Channel.Left">
+            <summary>
+            Indicates the left audio channel.
+            </summary>
+        </member>
+        <member name="F:VisManager.Channel.Right">
+            <summary>
+            Indicates the right audio channel.
+            </summary>
+        </member>
+        <member name="F:VisManager.Channel.Average">
+            <summary>
+            Indicates the average of the left and right audio channels.
+            </summary>
+        </member>
+        <member name="F:VisManager.Channel.Min">
+            <summary>
+            Indicates the minimum of the left and right audio channels.
+            </summary>
+        </member>
+        <member name="F:VisManager.Channel.Max">
+            <summary>
+            Indicates the maximum of the left and right audio channels.
+            </summary>
+        </member>
+        <member name="T:IVisManagerTarget">
+            <summary>
+            This interface is used by objects that need to target a VisManager. 
+            </summary>
+        </member>
+        <member name="P:IVisManagerTarget.Manager">
+            <summary>
+            This gets/sets the vis manager for this interface. 
+            </summary>
+        </member>
+        <member name="P:IVisManagerTarget.LastManagerName">
+            <summary>
+            This gets the name of the last manager that was set to this target.
+            </summary>
+        </member>
+        <member name="T:VisDataValueType">
+            <summary>
+            This enumeration defines what type of value a data group uses, i.e. how it is calculated. 
+            </summary>
+        </member>
+        <member name="F:VisDataValueType.Average">
+            <summary>
+            This indicates that the average of all values should be used. 
+            </summary>
+        </member>
+        <member name="F:VisDataValueType.Median">
+            <summary>
+            This indicates that the median/middle of all values should be used.
+            </summary>
+        </member>
+        <member name="F:VisDataValueType.Sum">
+            <summary>
+            This indicates that the sum of all values should be used.
+            </summary>
+        </member>
+        <member name="F:VisDataValueType.Minimum">
+            <summary>
+            This indicates that the minimum of all values should be used.
+            </summary>
+        </member>
+        <member name="F:VisDataValueType.Maximum">
+            <summary>
+            This indicates that the maximum of all values should be used.
+            </summary>
+        </member>
+        <member name="T:VisDataSource">
+            <summary>
+            This enumeration indicates what the data source of a data group should be.
+            </summary>
+        </member>
+        <member name="F:VisDataSource.Raw">
+            <summary>
+            This indicates that the raw audio wave data should be used.
+            </summary>
+        </member>
+        <member name="F:VisDataSource.Spectrum">
+            <summary>
+            This indicates that the spectrum data (the FFT result) should be used.
+            </summary>
+        </member>
+        <member name="T:VisDataGroup">
+            <summary>
+            This class encapsulates a section of the raw or spectrum data of the audio being played 
+            back in order to aggregate the data in that section in various ways. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.m_oVisManager">
+            <summary>
+            This is the vis manager that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.m_szLastVisManagerName">
+            <summary>
+            This is the name of the last manager that was set to this base modifier
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.dataGroupName">
+            <summary>
+            This is the name of this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.dataSource">
+            <summary>
+            This is the source of the data for this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.numberSubDataGroups">
+            <summary>
+            This indicates the number of times the target spectrum range 
+            should be split up into small sub groups for aggregating the data. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.frequencyRangeStartIndex">
+            <summary>
+            This is the start index of the target spectrum range of this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.frequencyRangeEndIndex">
+            <summary>
+            This is the end index of the target spectrum range of this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.boost">
+            <summary>
+            This is the scalar amount to apply to the data values of this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.cutoff">
+            <summary>
+            This is the maximum cutoff value to to the data values of this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.debugColor">
+            <summary>
+            This is the debug color to use for this data group. 
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.m_aoDataContainers">
+            <summary>
+            This array contains a data container for each VisDataValueType.  It is split up this way so that
+            it is possible to get the "Sum" of all sub data groups "Average".  Other examples would be 
+            the following: "Median of the Sums", "Minimum of the Maximums", "Sum of the Sums", etc
+            </summary>
+        </member>
+        <member name="F:VisDataGroup.m_oSubDataGroups">
+            <summary>
+            This list contains all of the sub data groups that define this data group.  The data
+            group is split up into component parts in order to allow more granular aggregation
+            of the visualization data.
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.Reset">
+            <summary>
+            This resets this data group to all default values. 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.Awake">
+            <summary>
+            This function is called when this data group is awoken, it is used to make sure it is registered with its target data group. 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.Start">
+            <summary>
+            This is called when this data group is started. 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.OnDestroy">
+            <summary>
+            This function is called when this data group is destroyed.  It makes sure that this data group is removed from its vis manager. 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.ValidateManager(System.Boolean)">
+            <summary>
+            This validates the manager for this data group, ensuring it is in the same game object as this one.
+            </summary>
+            <param name="displayWarning">Indicates if a warning should be displayed.</param>
+            <returns>Returns whether or not the manager is valid</returns>
+        </member>
+        <member name="M:VisDataGroup.EnsureRegistered">
+            <summary>
+            This function makes sure that this data group is registered with its vis manager. 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.Update">
+            <summary>
+            This is the main update function 
+            </summary>
+        </member>
+        <member name="M:VisDataGroup.GetValue(VisDataValueType,VisDataValueType)">
+            <summary>
+            This gets the value of this data group, based on the value types. 
+            </summary>
+            <param name="finalValueType">
+            This is the value type of the final part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <param name="subValueType">
+            This is the value type of the sub data part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <returns>
+            This is the final value that was requested
+            </returns>
+        </member>
+        <member name="M:VisDataGroup.GetPreviousValue(VisDataValueType,VisDataValueType)">
+            <summary>
+            This gets the previous value of this data group, based on the value types. 
+            </summary>
+            <param name="finalValueType">
+            This is the value type of the final part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <param name="subValueType">
+            This is the value type of the sub data part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <returns>
+            This is the final value that was requested
+            </returns>
+        </member>
+        <member name="M:VisDataGroup.GetValueDifference(VisDataValueType,VisDataValueType)">
+            <summary>
+            This gets the value difference of this data group, based on the value types. 
+            </summary>
+            <param name="finalValueType">
+            This is the value type of the final part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <param name="subValueType">
+            This is the value type of the sub data part of this value. i.e. 
+            The maximum (finalValueType) of the average (subValueType) of all sub data groups.
+            </param>
+            <returns>
+            This is the final value that was requested.
+            </returns>
+        </member>
+        <member name="M:VisDataGroup.DisplayDebugGUI(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Texture)">
+            <summary>
+            This displays the debug information of this data group. 
+            </summary>
+            <param name="x">
+            The x location to display this data group.
+            </param>
+            <param name="y">
+            The y location to display this data group.
+            </param>
+            <param name="barWidth">
+            This is the width in pixels of the debug bars.
+            </param>
+            <param name="barHeight">
+            This is the height in pixels of the debug bars.
+            </param>
+            <param name="separation">
+            This is the separation in pixels of the debug bars.
+            </param>
+            <param name="debugTexture">
+            This is the texture used to display the debug information.
+            </param>
+            <returns>
+            This is the rect of the of the debug information that was displayed.
+            </returns>
+        </member>
+        <member name="M:VisDataGroup.ToString">
+            <summary>
+            This gets the string representation of this data group. 
+            </summary>
+            <returns>
+            The string of this data group.
+            </returns>
+        </member>
+        <member name="M:VisDataGroup.RestoreVisDataGroupTarget(IVisDataGroupTarget)">
+            <summary>
+            This attempts to restore the last set data group on the target.
+            </summary>
+            <param name="target">The target to restore.</param>
+            <returns>Whether or not the target was restored.</returns>
+        </member>
+        <member name="P:VisDataGroup.Manager">
+            <summary>
+            This property gets/sets the target manager for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisDataGroup.LastManagerName">
+            <summary>
+            This gets the name of the last manager that was set to this target.
+            </summary>
+        </member>
+        <member name="T:VisDataGroup.Defaults">
+            <summary>
+            This internal class holds all of the defaults of the VisDataGroup class. 
+            </summary>
+        </member>
+        <member name="T:IVisDataGroupTarget">
+            <summary>
+            This interface is used to mark a class as being able to target a data group. 
+            </summary>
+        </member>
+        <member name="P:IVisDataGroupTarget.DataGroup">
+            <summary>
+            This gets/sets the data group. 
+            </summary>
+        </member>
+        <member name="P:IVisDataGroupTarget.LastDataGroupName">
+            <summary>
+            This gets the name of the last data group that was set to this target.
+            </summary>
+        </member>
+        <member name="T:VisBaseController">
+            <summary>
+            This is the base class for all controllers.  Controllers are used to pull a single scalar 
+            piece of data from a data group, to be used to modify or trigger objects in the scene. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.mc_fTargetAdjustedDifferenceTime">
+            <summary>
+            This is the amount of time that the input values should act
+            as if they changed in.  For instance, if the value went up 
+            0.1f in 0.05f seconds, the following would be the used value: 
+            adjustedChange = ((1.0f / 0.05f) * 0.1f) / mc_fTargetAdjustedDifferenceTime 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_oVisManager">
+            <summary>
+            This is the vis manager that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_szLastVisManagerName">
+            <summary>
+            This is the name of the last manager that was set to this base modifier
+            </summary>
+        </member>
+        <member name="F:VisBaseController.controllerName">
+            <summary>
+            This is the name of this controller. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.limitIncreaseRate">
+            <summary>
+            This indicates if the increase rate of this controllers values should be limited. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.increaseRate">
+            <summary>
+            This is the rate at which the value of this controller can increase per second. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.limitDecreaseRate">
+            <summary>
+            This indicates if the decrease rate of this controllers values should be limited. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.decreaseRate">
+            <summary>
+            This is the rate at which the value of this controller can decrease per second. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fPreviousValue">
+            <summary>
+            This is the value of this controller from the previous frame. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fValue">
+            <summary>
+            This is the current value of this controller. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fValueDifference">
+            <summary>
+            This is the difference of the current value and the previous value. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fAdjustedValueDifference">
+            <summary>
+            This is the ADJUSTED difference of the current value and the previous value. 
+            The adjusted value is the change of the value as if it took place over a 
+            certain time period, controlled by mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fMinValue">
+            <summary>
+            This is the minimum value that this controller has ever been set to. 
+            </summary>
+        </member>
+        <member name="F:VisBaseController.m_fMaxValue">
+            <summary>
+            This is the maximum value that this controller has ever beens set to. 
+            </summary>
+        </member>
+        <member name="M:VisBaseController.Reset">
+            <summary>
+            This function resets this controller to default values 
+            </summary>
+        </member>
+        <member name="M:VisBaseController.Awake">
+            <summary>
+            This is called when this component is woken up. 
+            </summary>
+        </member>
+        <member name="M:VisBaseController.Start">
+            <summary>
+            The main start function.
+            </summary>
+        </member>
+        <member name="M:VisBaseController.OnDestroy">
+            <summary>
+            This is called when this controller is destroyed. 
+            </summary>
+        </member>
+        <member name="M:VisBaseController.ValidateManager(System.Boolean)">
+            <summary>
+            This validates the manager for this controller, ensuring it is in the same game object as this one.
+            </summary>
+            <param name="displayWarning">Indicates if a warning should be displayed.</param>
+            <returns>Returns whether or not the manager is valid</returns>
+        </member>
+        <member name="M:VisBaseController.EnsureRegistered">
+            <summary>
+            This function makes sure that this controller is registered with its vis manager. 
+            </summary>
+        </member>
+        <member name="M:VisBaseController.Update">
+            <summary>
+            This updates this controller.  This should not be overridden!  To implement custom controller functionality, override GetCustomControllerValue().
+            </summary>
+        </member>
+        <member name="M:VisBaseController.GetCustomControllerValue">
+            <summary>
+            This function returns the current value for this controller.
+            TO IMPLEMENT A CUSTOM CONTROLLER, override this function 
+            to return the current target value.
+            </summary>
+            <returns>
+            The custom controller value.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.GetCurrentValue">
+            <summary>
+            This gets the current value of this controller. 
+            </summary>
+            <returns>
+            The current value.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.GetPreviousValue">
+            <summary>
+            This gets the previous value of this controller. 
+            </summary>
+            <returns>
+            The previous value.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.GetValueDifference">
+            <summary>
+            This gets the value difference of this controller. 
+            </summary>
+            <returns>
+            The value difference.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.GetAdjustedValueDifference">
+            <summary>
+            This gets the adjusted value difference of this controller. 
+            </summary>
+            <returns>
+            The adjusted value difference.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.DisplayDebugGUI(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Texture)">
+            <summary>
+            This displays the debug information of this controller. 
+            </summary>
+            <param name="x">
+            The x location to display this data group.
+            </param>
+            <param name="y">
+            The y location to display this data group.
+            </param>
+            <param name="barWidth">
+            This is the width in pixels of the debug bars.
+            </param>
+            <param name="barHeight">
+            This is the height in pixels of the debug bars.
+            </param>
+            <param name="separation">
+            This is the separation in pixels of the debug bars.
+            </param>
+            <param name="debugTexture">
+            This is the texture used to display the debug information.
+            </param>
+            <returns>
+            This is the rect of the of the debug information that was displayed.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.ToString">
+            <summary>
+            This gets the string representation of this controller. 
+            </summary>
+            <returns>
+            The string of this data group.
+            </returns>
+        </member>
+        <member name="M:VisBaseController.RestoreVisBaseControllerTarget(IVisBaseControllerTarget)">
+            <summary>
+            This attempts to restore the last set controller on the target.
+            </summary>
+            <param name="target">The target to restore.</param>
+            <returns>Whether or not the target was restored.</returns>
+        </member>
+        <member name="P:VisBaseController.Manager">
+            <summary>
+            This property gets/sets the target manager for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisBaseController.LastManagerName">
+            <summary>
+            This gets the name of the last manager that was set to this target.
+            </summary>
+        </member>
+        <member name="P:VisBaseController.MinValue">
+            <summary>
+            This gets the minimum value that this controller has ever been set to. 
+            </summary>
+        </member>
+        <member name="P:VisBaseController.MaxValue">
+            <summary>
+            This gets the maximum value that this controller has ever been set to. 
+            </summary>
+        </member>
+        <member name="T:VisBaseController.Defaults">
+            <summary>
+            This internal class holds all of the defaults of the VisBaseController class. 
+            </summary>
+        </member>
+        <member name="T:IVisBaseControllerTarget">
+            <summary>
+            This interface is used to mark a class as being able to target a controller. 
+            </summary>
+        </member>
+        <member name="P:IVisBaseControllerTarget.Controller">
+            <summary>
+            This gets/sets the controller. 
+            </summary>
+        </member>
+        <member name="P:IVisBaseControllerTarget.LastControllerName">
+            <summary>
+            This gets the name of the last controller that was set to this target.
+            </summary>
+        </member>
+        <member name="T:IVisPrefabSpawnedTarget">
+            <summary>
+            This interface is used to notify prefabs/objects that are spawned by the
+            VisSpawnPrefabTrigger object, and to feed into them the current controller
+            state.
+            </summary>
+        </member>
+        <member name="M:IVisPrefabSpawnedTarget.OnSpawned(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This function is called by VisSpawnPrefabTrigger when it spawns a prefab.
+            </summary>
+            <param name="current">
+            The current value of the associated controller.
+            </param>
+            <param name="previous">
+            The previous value of the associated controller.
+            </param>
+            <param name="difference">
+            The value difference of the associated controller.
+            </param>
+            <param name="adjustedDifference">
+            The adjusted value difference of the targeted controller.
+            This value is the difference value as if it took place over a 
+            certain time period, controlled by VisBaseController.mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </param>
+        </member>
+        <member name="T:VisSubDataGroup">
+            <summary>
+            This class is a sub data group that belongs to a parent data group. 
+            It is used to help aggregate data for a data group.  
+            </summary>
+        </member>
+        <member name="F:VisSubDataGroup.frequencyRangeStartIndex">
+            <summary>
+            This is the start frequency index of this sub data group. 
+            </summary>
+        </member>
+        <member name="F:VisSubDataGroup.frequencyRangeEndIndex">
+            <summary>
+            This is the end frequency index of this sub data group. 
+            </summary>
+        </member>
+        <member name="M:VisSubDataGroup.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructor. 
+            </summary>
+            <param name="startIndex">
+            The start frequency index.
+            </param>
+            <param name="endIndex">
+            This end frequency index.
+            </param>
+        </member>
+        <member name="M:VisSubDataGroup.Update(System.Single[])">
+            <summary>
+            This is the main update function of this sub data group, uses to aggregate the data for this sub data group. 
+            </summary>
+            <param name="spectrum">
+            This is the current spectrum data to update against.
+            </param>
+        </member>
+        <member name="T:VisBaseTrigger">
+            <summary>
+            This class is a base class for all triggers.  Triggers are scripts that 
+            target a controller, and can trigger events in the game, based on input 
+            from its target controller. 
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.m_oVisManager">
+            <summary>
+            This is the vis manager that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.m_szLastVisManagerName">
+            <summary>
+            This is the name of the last manager that was set to this base modifier
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.controller">
+            <summary>
+            This is the controller that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.m_szLastControllerName">
+            <summary>
+            This is the name of the last controller that was set to this base modifier
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.triggerType">
+            <summary>
+            This describes the type of this trigger.  (i.e. How it functions)
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.triggerThreshold">
+            <summary>
+            This is the threshold at which the trigger should activate, based on the current Trigger Type.
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.triggerReactivateDelay">
+            <summary>
+            This is the amount of time to wait in between consecutive triggers of this trigger.
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.triggerRandomReactivateDelay">
+            <summary>
+            This is the amount of random delay to add to the reactivate time.  
+            Random range from "-value" to "value"
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.m_fTriggerDelayTimer">
+            <summary>
+            This is the timer used to control the trigger reactivate delay.
+            </summary>
+        </member>
+        <member name="M:VisBaseTrigger.Reset">
+            <summary>
+            This function is called when this trigger is reset.
+            Should be overriden by sub classes to reset variables 
+            to their default values.
+            </summary>
+        </member>
+        <member name="M:VisBaseTrigger.Start">
+            <summary>
+            This function is called when this trigger is started.
+            Should be override by sub classes to initialize.
+            </summary>
+        </member>
+        <member name="M:VisBaseTrigger.OnDestroy">
+            <summary>
+            This function is called when this trigger is destroyed.
+            Should be override by sub classes to handle destruction.
+            </summary>
+        </member>
+        <member name="M:VisBaseTrigger.Update">
+            <summary>
+            This updates this modifier using the default methods.  This can be overriden to implement custom triggering criteria.
+            </summary>
+        </member>
+        <member name="M:VisBaseTrigger.OnTriggered(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This function is called by the trigger whenever 
+            this trigger has been TRIGGERED.
+            TO IMPLEMENT A CUSTOM TRIGGER REACTION, override this function 
+            to handle the trigger event.
+            </summary>
+            <param name="current">
+            The current value of the targeted controller.
+            </param>
+            <param name="previous">
+            The previous value of the targeted controller.
+            </param>
+            <param name="difference">
+            The value difference of the targeted controller.
+            </param>
+            <param name="adjustedDifference">
+            The adjusted value difference of the targeted controller.
+            This value is the difference value as if it took place over a 
+            certain time period, controlled by VisBaseController.mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </param>
+        </member>
+        <member name="P:VisBaseTrigger.Manager">
+            <summary>
+            This property gets/sets the target manager for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisBaseTrigger.LastManagerName">
+            <summary>
+            This gets the name of the last manager that was set to this target.
+            </summary>
+        </member>
+        <member name="P:VisBaseTrigger.Controller">
+            <summary>
+            This property gets/sets the target controller for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisBaseTrigger.LastControllerName">
+            <summary>
+            This gets the name of the last controller that was set to this target.
+            </summary>
+        </member>
+        <member name="T:VisBaseTrigger.Defaults">
+            <summary>
+            This internal class holds all of the defaults of the VisBaseTrigger class. 
+            </summary>
+        </member>
+        <member name="T:VisBaseTrigger.TriggerType">
+            <summary>
+            This enumeration indicates how this trigger is activated.
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.TriggerType.None">
+            <summary>
+            This indicates no default triggering and it must be triggered by custom functionality. 
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.TriggerType.LessThanValueThreshold">
+            <summary>
+            This indicates that this trigger is triggered when the associated controllers value goes under the specified threshold. 
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.TriggerType.GreaterThanValueThreshold">
+            <summary>
+            This indicates that this trigger is triggered when the associated controllers value goes over the specified threshold. 
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.TriggerType.LessThanChangeThreshold">
+            <summary>
+            This indicates that this trigger is triggered when the associated controllers value difference/change goes under the specified threshold. 
+            </summary>
+        </member>
+        <member name="F:VisBaseTrigger.TriggerType.GreaterThanChangeThreshold">
+            <summary>
+            This indicates that this trigger is triggered when the associated controllers value difference/change goes over the specified threshold. 
+            </summary>
+        </member>
+        <member name="T:VisBaseModifier">
+            <summary>
+            This class is a base class for all modifiers.  Modifiers are scripts that 
+            target a controller, and can modify game objects over time. 
+            </summary>
+        </member>
+        <member name="F:VisBaseModifier.m_oVisManager">
+            <summary>
+            This is the vis manager that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisBaseModifier.m_szLastVisManagerName">
+            <summary>
+            This is the name of the last manager that was set to this base modifier
+            </summary>
+        </member>
+        <member name="F:VisBaseModifier.controller">
+            <summary>
+            This is the controller that this modifier is targeting.
+            </summary>
+        </member>
+        <member name="F:VisBaseModifier.m_szLastControllerName">
+            <summary>
+            This is the name of the last controller that was set to this base modifier
+            </summary>
+        </member>
+        <member name="M:VisBaseModifier.Reset">
+            <summary>
+            This function is called when this modifier is reset.
+            Should be overriden by sub classes to reset variables 
+            to their default values.
+            </summary>
+        </member>
+        <member name="M:VisBaseModifier.Start">
+            <summary>
+            This function is called when this modifier is started.
+            Should be override by sub classes to initialize.
+            </summary>
+        </member>
+        <member name="M:VisBaseModifier.OnDestroy">
+            <summary>
+            This function is called when this modifier is destroyed.
+            Should be override by sub classes to handle destruction.
+            </summary>
+        </member>
+        <member name="M:VisBaseModifier.Update">
+            <summary>
+            This updates this modifier.  This should not be overridden!  To implement custom modifier functionality, override OnValueUpdated().
+            </summary>
+        </member>
+        <member name="M:VisBaseModifier.OnValueUpdated(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This function is called by the base modifier whenever 
+            the value of the targeted controller is updated.
+            TO IMPLEMENT A CUSTOM MODIFIER, override this function 
+            to handle the value being updated.
+            </summary>
+            <param name="current">
+            The current value of the targeted controller.
+            </param>
+            <param name="previous">
+            The previous value of the targeted controller.
+            </param>
+            <param name="difference">
+            The value difference of the targeted controller.
+            </param>
+            <param name="adjustedDifference">
+            The adjusted value difference of the targeted controller.
+            This value is the difference value as if it took place over a 
+            certain time period, controlled by VisBaseController.mc_fTargetAdjustedDifferenceTime.  The 
+            default of this essientially indicates a frame rate of 60 fps to determine 
+            the adjusted difference.  This should be used for almost all difference 
+            calculations, as it is NOT frame rate dependent.
+            </param>
+        </member>
+        <member name="P:VisBaseModifier.Manager">
+            <summary>
+            This property gets/sets the target manager for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisBaseModifier.LastManagerName">
+            <summary>
+            This gets the name of the last manager that was set to this target.
+            </summary>
+        </member>
+        <member name="P:VisBaseModifier.Controller">
+            <summary>
+            This property gets/sets the target controller for this modifier. 
+            </summary>
+        </member>
+        <member name="P:VisBaseModifier.LastControllerName">
+            <summary>
+            This gets the name of the last controller that was set to this target.
+            </summary>
+        </member>
+        <member name="T:VisBaseModifier.Defaults">
+            <summary>
+            This internal class holds all of the defaults of the VisBaseModifier class. 
+            </summary>
+        </member>
+    </members>
+</doc>

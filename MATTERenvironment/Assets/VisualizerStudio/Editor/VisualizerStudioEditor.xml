@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VisualizerStudioEditor</name>
+    </assembly>
+    <members>
+        <member name="T:VisCommonEditor">
+            <summary>
+            This is the common base custom editor for visualizer studio objects and classes.
+            </summary>
+        </member>
+        <member name="F:VisCommonEditor.showAutomaticInspectorGUI">
+            <summary>
+            This indicates if the automatic inspector gui should be shown.
+            </summary>
+        </member>
+        <member name="M:VisCommonEditor.DisplayIVisManagerTargetGUI(IVisManagerTarget)">
+            <summary>
+            This displays the drop down for selecting a manager from the inspector.
+            </summary>
+            <param name="managerTarget">The manager target to set the manager for.</param>
+            <returns>Whether or not a manager is currently set.</returns>
+        </member>
+        <member name="M:VisCommonEditor.DisplayIVisDataGroupTargetGUI(IVisDataGroupTarget)">
+            <summary>
+            This displays the drop down for selecting a data group from the inspector.
+            </summary>
+            <param name="dataGroupTarget">The data group target to set the data group for.</param>
+            <returns>Whether or not a data group is currently set.</returns>
+        </member>
+        <member name="M:VisCommonEditor.DisplayIVisBaseControllerTargetGUI(IVisBaseControllerTarget)">
+            <summary>
+            This displays the drop down for selecting a controller from the inspector.
+            </summary>
+            <param name="baseControllerTarget">The base controller target to set the controller for.</param>
+            <returns>Whether or not a controller is currently set.</returns>
+        </member>
+        <member name="M:VisCommonEditor.OnInspectorGUI">
+            <summary>
+            This is called when the inspector gui needs to be displayed.
+            </summary>
+        </member>
+        <member name="M:VisCommonEditor.CustomInspectorGUI">
+            <summary>
+            This function is called by the base editor to display normal custom inspector gui.
+            </summary>
+        </member>
+        <member name="M:VisCommonEditor.DisplayAutomaticInspectorGUI">
+            <summary>
+            This displays the automatic inspector gui.  Call this if you have public members
+            you wish to edit automatically without manually setting up your inspector gui.
+            </summary>
+        </member>
+        <member name="T:VisManagerEditor">
+            <summary>
+            This is the editor for the VisManager.
+            </summary>
+        </member>
+        <member name="M:VisManagerEditor.OnInspectorGUI">
+            <summary>
+            Main inspector gui function.
+            </summary>
+        </member>
+        <member name="T:VisDataGroupEditor">
+            <summary>
+            This class is used as the custom editor for data groups.
+            </summary>
+        </member>
+        <member name="M:VisDataGroupEditor.TargetInspectorGUI">
+            <summary>
+            This is the function that is called by the base editor in order to display the custom inspector gui for required target objects.
+            </summary>
+            <returns>Whether or not the custom inspector gui found valid targets.</returns>
+        </member>
+        <member name="M:VisDataGroupEditor.CustomInspectorGUI">
+            <summary>
+            This function is called by the base editor to display normal custom inspector gui.
+            </summary>
+        </member>
+        <member name="T:VisBaseTriggerEditor">
+            <summary>
+            This class is used as the base editor for all custom trigger editors.
+            </summary>
+        </member>
+        <member name="M:VisBaseTriggerEditor.TargetInspectorGUI">
+            <summary>
+            This is the function that is called by the base editor in order to display the custom inspector gui.
+            </summary>
+            <returns>Whether or not the custom inspector gui was finished.</returns>
+        </member>
+        <member name="M:VisBaseTriggerEditor.CustomInspectorGUI">
+            <summary>
+            This function is called by the base editor to display normal custom inspector gui.
+            </summary>
+        </member>
+        <member name="T:VisBaseControllerEditor">
+            <summary>
+            This class is used as the base editor for all custom controller editors.
+            </summary>
+        </member>
+        <member name="M:VisBaseControllerEditor.TargetInspectorGUI">
+            <summary>
+            This is the function that is called by the base editor in order to display the custom inspector gui for required target objects.
+            </summary>
+            <returns>Whether or not the custom inspector gui found valid targets.</returns>
+        </member>
+        <member name="M:VisBaseControllerEditor.CustomInspectorGUI">
+            <summary>
+            This function is called by the base editor to display normal custom inspector gui.
+            </summary>
+        </member>
+        <member name="T:VisBaseModifierEditor">
+            <summary>
+            This class is used as the base editor for all custom modifier editors.
+            </summary>
+        </member>
+        <member name="M:VisBaseModifierEditor.TargetInspectorGUI">
+            <summary>
+            This is the function that is called by the base editor in order to display the custom inspector gui.
+            </summary>
+            <returns>Whether or not the custom inspector gui was finished.</returns>
+        </member>
+        <member name="M:VisBaseModifierEditor.CustomInspectorGUI">
+            <summary>
+            This function is called by the base editor to display normal custom inspector gui.
+            </summary>
+        </member>
+    </members>
+</doc>

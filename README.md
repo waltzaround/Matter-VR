@@ -12,7 +12,7 @@ features and checking the progress of bug fixes.
 
 Make sure you are running Unity `5.3.4` as this is the most compatible version with this project to date.
 
-###Dependencies
+###Dependencies & Required Hardware
 
 - An Oculus Rift DK2 headset and the [requisite runtime](https://developer.oculus.com/downloads/)
 - A Leap Motion Sensor with the [requisite runtime](https://developer.leapmotion.com/get-started)
@@ -64,23 +64,21 @@ After an immense amount of trial and error, we discovered that the LiveOSC Plugi
 
 ####Week 5 Leap Motion & Audio Analysis
 
-We discovered that the Leap Motion SDK & hardware tracking was much more accurate despite it's flaws, and reached the conclusion we should implement the Leap SDK instead of the Kinect. We also discovered a 
+We discovered that the Leap Motion SDK & hardware tracking was much more accurate despite some issues with finger tracking, and reached the conclusion we should implement the Leap SDK instead of the Kinect. We also discovered a Audio Analysis plugin that enabled us to rapidly build and test audio-reactive environments.
 
 
 ####Week 6 UI Integrations
 
-We developed a UI Prototype
+A UI Prototype to enable audio recording and playback was developed for the leap motion. We experimented with integrating the Leap Motion dependencies into our Instrument code. No dice. 
 
 ![Leap Motion prototype controller](https://github.com/waltzaround/CTEC708-VR-Controller/blob/master/images/13023358_1116154475103188_1700030371_n.png "Prototype controller")
 
 
-####Week 7 hackathon & Formative
+####Week 7 hackathon & Formative & environment & art direction & git breaking
 
-Bugs in pushing and pulling
-deveoping
-
-- project management here
-
+ We broke a lot of things, including our git repository by flooding it with several thousand audio samples, resulting in several thousand meta files being created which broke some of our dev machines. We also held a short two day internal hackathon to flesh out the bugs, and come up with a cohesive vision and art direction for the project. We succeeded and the result is a working prototype. 
+ 
+ We plan to continue prototyping and to start user testing on the 2nd of May, 2016.
 
 
 

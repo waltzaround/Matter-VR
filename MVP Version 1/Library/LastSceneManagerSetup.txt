@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MVo1.unity
+- path: Assets/UIAssets.unity
   isLoaded: 1
   isActive: 1

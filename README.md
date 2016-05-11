@@ -12,7 +12,7 @@ features and checking the progress of bug fixes.
 
 ##Setup Instructions
 
-Make sure you are running Unity `5.3.4` as this is the most compatible version with this project to date.
+Make sure you are running Unity `5.3.4f1` as this is the most compatible version with this project to date.
 
 ###Dependencies & Required Hardware
 

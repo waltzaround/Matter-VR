@@ -8,7 +8,7 @@ VR music controller that combines an Oculus DK2 headset with a Leap Motion senso
 We have a [public Trello board](https://trello.com/b/lQ19QmZj/matter) available for viewing upcoming 
 features and checking the progress of bug fixes.
 
-[Refer here for older commits as we broke the last repository](https://github.com/waltzaround/CTEC708-BrokenVRThing/commits/master)
+[Refer here for older commits as we broke the last repository :( ](https://github.com/waltzaround/CTEC708-BrokenVRThing/commits/master)
 
 ##Setup Instructions
 

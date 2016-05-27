@@ -19,7 +19,6 @@ public class KeyboardNote : MonoBehaviour {
 	private AudioSource anote;
 	private AudioSource bnote;
 	private AudioSource c2note;
-	public string handNote;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +30,6 @@ public class KeyboardNote : MonoBehaviour {
 		anote = anoteTrigger.GetComponent<AudioSource> ();
 		bnote = bnoteTrigger.GetComponent<AudioSource> ();
 		c2note = c2noteTrigger.GetComponent<AudioSource> ();
-		handNote = " ";
-		//HandBehaviourV2 handNote = GetComponent<HandBehaviourV2> ();
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -40,38 +37,32 @@ public class KeyboardNote : MonoBehaviour {
 		if (other.gameObject.CompareTag("C")) {
 			//Debug.Log ("true");
 			cnote.Play();
-			handNote = "C";
 		}
 		if (other.gameObject.CompareTag("D")) {
 			dnote.Play();
-			handNote = "D";
 		}
 		if (other.gameObject.CompareTag("E")) {
 			enote.Play();
-			handNote = "E";
 		}
 		if (other.gameObject.CompareTag("F")) {
 			fnote.Play();
-			handNote = "F";
 		}
 		if (other.gameObject.CompareTag("G")) {
 			gnote.Play();
-			handNote = "G";
 		}
 		if (other.gameObject.CompareTag("A")) {
 			anote.Play();
-			handNote = "A";
 		}
 		if (other.gameObject.CompareTag("B")) {
 			bnote.Play();
-			handNote = "B";
 		}
 		if (other.gameObject.CompareTag("C2")) {
 			c2note.Play();
-			handNote = "C";
 		}
 	}
 	void OnTriggerExit(Collider other) {
-		handNote = " ";
+		//if (other == noteTrigger.GetComponent<Collider>()) {
+			//note.Stop();
+		//}
 	}
 }

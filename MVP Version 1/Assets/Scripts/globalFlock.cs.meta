@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 02a9477d158c59b45beb7422f0226b7f
+timeCreated: 1458604192
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - flockerPrefab: {fileID: 100004, guid: ad5878248fac71a48aa469475023f88a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

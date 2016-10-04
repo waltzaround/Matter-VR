@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/VaporwaveEnvironment.unity
-  isLoaded: 1
-  isActive: 1
